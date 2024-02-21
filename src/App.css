@@ -5,6 +5,15 @@
   text-align: center;
 }
 
+body{
+  background-image: url("/src/assets/images/pexels-marvin-ozz-2474661.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin:0px;
+  padding:0px;
+
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
