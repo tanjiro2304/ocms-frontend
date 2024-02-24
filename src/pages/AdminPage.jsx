@@ -33,8 +33,9 @@ const AdminPage = () => {
             alt="Paella dish"
           />
           <CardContent  >
+
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-              <h3>Add Menu Item</h3>
+              Add Menu Item
             </Typography>
             <CardActions style={{ marginTop: '25px', display: 'flex', justifyContent: 'center', alignSelf: 'center', flexDirection: 'column' }}>
               <Button onClick={addMenuItemClick} variant="contained" color="primary">Add</Button>
@@ -51,7 +52,7 @@ const AdminPage = () => {
           />
           <CardContent  >
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-              <h3>Add Subscription Plan</h3>
+              Add Subscription Plan
             </Typography>
             <CardActions style={{ marginTop: '25px', display: 'flex', justifyContent: 'center', alignSelf: 'center', flexDirection: 'column' }}>
               <Button onClick={addSubscriptionPlanClick} variant="contained" color="primary">Add</Button>

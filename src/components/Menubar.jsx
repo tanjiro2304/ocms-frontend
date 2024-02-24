@@ -1,30 +1,63 @@
 import React from 'react'
 import { useState } from 'react';
 import '../css/menubar.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
 const Menubar = () => {
 
     const [activeMenuItem, setActiveMenuItem] = useState('Home');
 
-    const navigate = useNavigate();
 
-    const handleMenuItemClick = (menuItem) => {
-        setActiveMenuItem(menuItem);
-        if (menuItem === 'Home') {
-            navigate('/')
-        }
-        else if (menuItem === 'Contact') {
-            navigate('/contactus')
-        }
-        else if (menuItem === 'About') {
-            navigate('/about')
-        }
-    };
+    // const handleMenuItemClick = (menuItem) => {
+    //     setActiveMenuItem(menuItem);
+    //     if (menuItem === 'Home') {
+    //         navigate('/',{replace:true})
+    //     }
+    //     else if (menuItem === 'Contact') {
+    //         navigate('/contactus',{replace:true})
+    //     }
+    //     else if (menuItem === 'About') {
+    //         navigate('/about',{replace:true})
+    //     }
+    // };
 
 
-    const onHomeClick = () => {
-        navigate('/home')
+    const token = localStorage.getItem('token')
+
+    // const onLoginClick = () => {
+    //     navigate('/login',{replace:true})
+    // }
+
+    const onLogoutClick = () => {
+        localStorage.clear();
     }
+
+    const option = () => {
+        console.log(token);
+        if (token === null || token === undefined) {
+            return (
+                <li 
+                    className='login'
+                // onClick={() => handleMenuItemClick('Contact')}
+                >
+                    
+                </li>
+            )
+        } else {
+            return (
+                <li
+                    className='logout'
+                    onClick={onLogoutClick}
+                >
+                     Logout
+                </li>
+            )
+        }
+    }
+
+
+
+
 
 
     return (
@@ -34,24 +67,21 @@ const Menubar = () => {
                     <ul className="menu-bar">
                         <li
                             className={activeMenuItem === 'Home' ? 'active' : ''}
-                            onClick={() => handleMenuItemClick('Home')}
+                        // onClick={() => handleMenuItemClick('Home')}
                         >
                             Home
                         </li>
                         <li
                             className={activeMenuItem === 'About' ? 'active' : ''}
-                            onClick={() => handleMenuItemClick('About')}
+                        // onClick={() => handleMenuItemClick('About')}
                         >
                             About
                         </li>
-                        <li
-                            className={activeMenuItem === 'Contact' ? 'active' : ''}
-                            onClick={() => handleMenuItemClick('Contact')}
-                        >
-                            Contact
-                        </li>
+                        {option()}
                     </ul>
                 </nav>
+
+
             </header>
 
 
