@@ -16,14 +16,15 @@ const AdminPage = () => {
 
   return (
     <div style={{
-      backgroundColor: 'white', color: 'black', width: '1300px', height: '900px',
+      backgroundColor: 'white', color: 'black', width: '1300px', height: '700px',
       borderRadius: '20px'
     }}>
-      <h2 style={{ padding: '0px', margin: '0px' }}>Adminstration Page</h2>
+      <h2 style={{ padding: '0px',marginTop:'30px',display: 'flex', justifyContent: 'center', alignSelf: 'center' }}>Adminstration Page</h2>
       <div style={{
         marginTop: '50px', display: 'flex', justifyContent: 'center', alignSelf: 'center',
         alignItems: 'center', flexDirection: 'row', width: '100%'
       }}>
+        
         <Card sx={{ minWidth: 275 }}>
           <CardMedia
             component="img"
