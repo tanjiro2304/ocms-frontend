@@ -7,11 +7,11 @@ const UserPage = () => {
   
   const navigate = useNavigate();
 
-  const addMenuItemClick = () => {
-    navigate('/admin/addMenuItem')
+  const onOrderItemClick = () => {
+    navigate('/userpage/orderitem')
   }
 
-  const addSubscriptionPlanClick = () => {
+  const onSubscribeClick = () => {
     // navigate('/admin/addSubscriptionPlan')
   }
   return (
@@ -38,7 +38,7 @@ const UserPage = () => {
               Place Your Order
             </Typography>
             <CardActions style={{ marginTop: '25px', display: 'flex', justifyContent: 'center', alignSelf: 'center', flexDirection: 'column' }}>
-              <Button onClick={addMenuItemClick} variant="contained" color="primary">Order Menu</Button>
+              <Button onClick={onOrderItemClick} variant="contained" color="primary">Order Menu</Button>
             </CardActions>
           </CardContent>
         </Card>
@@ -55,7 +55,7 @@ const UserPage = () => {
               Add Subscription Plan
             </Typography>
             <CardActions style={{ marginTop: '25px', display: 'flex', justifyContent: 'center', alignSelf: 'center', flexDirection: 'column' }}>
-              <Button onClick={addSubscriptionPlanClick} variant="contained" color="primary">Subscribe A Plan</Button>
+              <Button onClick={onSubscribeClick} variant="contained" color="primary">Subscribe A Plan</Button>
             </CardActions>
           </CardContent>
         </Card>
