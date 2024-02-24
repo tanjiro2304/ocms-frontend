@@ -1,60 +1,66 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import '../css/menubar.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 const Menubar = () => {
-
+    const navigate = useNavigate();
     const [activeMenuItem, setActiveMenuItem] = useState('Home');
 
 
-    // const handleMenuItemClick = (menuItem) => {
-    //     setActiveMenuItem(menuItem);
-    //     if (menuItem === 'Home') {
-    //         navigate('/',{replace:true})
-    //     }
-    //     else if (menuItem === 'Contact') {
-    //         navigate('/contactus',{replace:true})
-    //     }
-    //     else if (menuItem === 'About') {
-    //         navigate('/about',{replace:true})
-    //     }
-    // };
+    const handleMenuItemClick = (menuItem) => {
+        setActiveMenuItem(menuItem);
+        if (menuItem === 'Home') {
+            navigate('/')
+        }
+        else if (menuItem === 'Contact') {
+            navigate('/contactus')
+        }
+        else if (menuItem === 'About') {
+            navigate('/about')
+        }
+        else if (menuItem === 'Login') {
+            navigate('/login')
+        }
+
+        else if (menuItem === 'Logout') {
+            localStorage.setItem('token',null);
+            navigate('/')
+            
+        }
+    };
 
 
     const token = localStorage.getItem('token')
 
-    // const onLoginClick = () => {
-    //     navigate('/login',{replace:true})
-    // }
+    const onLoginClick = () => {
+        navigate('/')
+    }
 
     const onLogoutClick = () => {
-        localStorage.clear();
+        localStorage.setItem('token',null);
     }
 
-    const option = () => {
-        console.log(token);
-        if (token === null || token === undefined) {
-            return (
-                <li 
-                    className='login'
-                // onClick={() => handleMenuItemClick('Contact')}
-                >
-                    
-                </li>
-            )
-        } else {
-            return (
-                <li
-                    className='logout'
-                    onClick={onLogoutClick}
-                >
-                     Logout
-                </li>
-            )
-        }
-    }
-
+    // useEffect(()=>{
+    //     if (token === null || token === undefined) {
+    //         return (
+    //             <li
+    //                 className='login'
+    //                 onClick={() => handleMenuItemClick('Login')}
+    //             >
+    //             </li>
+    //         )
+    //     } else {
+    //         return (
+    //             <li
+    //                 className='logout'
+    //                 onClick={() => handleMenuItemClick('Logout')}
+    //             >
+    //                 Logout
+    //             </li>
+    //         )
+    //     }
+    // },[token])
 
 
 
@@ -67,17 +73,17 @@ const Menubar = () => {
                     <ul className="menu-bar">
                         <li
                             className={activeMenuItem === 'Home' ? 'active' : ''}
-                        // onClick={() => handleMenuItemClick('Home')}
+                            onClick={() => handleMenuItemClick('Home')}
                         >
                             Home
                         </li>
                         <li
                             className={activeMenuItem === 'About' ? 'active' : ''}
-                        // onClick={() => handleMenuItemClick('About')}
+                            onClick={() => handleMenuItemClick('About')}
                         >
                             About
                         </li>
-                        {option()}
+                        
                     </ul>
                 </nav>
 

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 
 import { useNavigate } from 'react-router-dom';
-import { request } from '../service/AxiosHelper';
+import { request, setAuthHeader } from '../service/AxiosHelper';
 
 const LoginPage = () => {
 
@@ -12,8 +12,8 @@ const LoginPage = () => {
         password: "",
     });
 
- 
-    const navigate = useNavigate(); 
+
+    const navigate = useNavigate();
     const onLoginClick = () => {
         request(
             "POST",
@@ -22,20 +22,23 @@ const LoginPage = () => {
                 username: user.username,
                 password: user.password
             }).then(
-            (response) => {
-                sessionStorage.setItem("userId",response.data.id);
+                (response) => {
+                    sessionStorage.setItem("userId", response.data.id);
+                    console.log(response.data)
+                    setAuthHeader(response.data.token);
+                    if (response.data.role === 'ADMIN') {
+                        navigate('/admin')
+                    } else {
+                        navigate('/userpage')
+                    }
 
-                setAuthHeader(response.data.token);
-                console.log(sessionStorage.getItem("userId"));
-                navigate('/adminpage')
-               
-            }).catch(
-            (error) => {
-                setAuthHeader(null);
-                alert("Invalid username and password")
-            }
-        );
-        
+                }).catch(
+                    (error) => {
+                        setAuthHeader(null);
+                        alert("Invalid username and password")
+                    }
+                );
+
     }
 
     const onChangeHandle = (e) => {

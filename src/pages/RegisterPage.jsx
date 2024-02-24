@@ -1,38 +1,38 @@
 import { Button, TextField } from '@mui/material'
 import React, { useState } from 'react'
-import { request } from '../service/AxiosHelper';
-
+import { request, setAuthHeader } from '../service/AxiosHelper';
+import '../css/form.css';
 const RegisterPage = () => {
-    const [account,setAccount] = useState({
+    const [account, setAccount] = useState({
         firstName: '',
         lastName: '',
         email: '',
-        contactNo:''
+        contactNo: ''
     })
     const [user, setUser] = useState({
         username: '',
         password: '',
-        role:'',
+        role: '',
         account: account
     });
 
     const onSubmit = () => {
+        user.account = account;
         console.log(user)
-        // request(
-        //     "POST",
-        //     "/register/signup",
-        //     user).then(
-        //     (response) => {
-        //         setAuthHeader(response.data.token);
-                
-        //         navigate('/login')
-        //         alert("Account Created Successfully")
-        //     }).catch(
-        //     (error) => {
-        //         setAuthHeader(null);
-                
-        //     }
-        // );
+        request(
+            "POST",
+            "/register/signup",
+            user).then(
+            (response) => {
+                setAuthHeader(response.data.token);
+                navigate('/login')
+
+            }).catch(
+            (error) => {
+                setAuthHeader(null);
+
+            }
+        );
     }
 
     const onChangeHandleUser = (e) => {
@@ -51,20 +51,18 @@ const RegisterPage = () => {
     return (
         <div style={{
             backgroundColor: 'white', color: 'black', width: '50%', height: '750px',
-            borderRadius: '20px'
+            borderRadius: '20px', alignSelf:'center', margin: 'auto'
         }}>
-            
-
             <div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', flexDirection: 'column' }}>
-            <h2 style={{marginTop:'30px', marginLeft:'auto', marginRight:'auto'}}>User Registration Page </h2>
-                <TextField name='firstName' style={{ width: '300px', marginBottom: '30px', marginLeft: 'auto', marginRight: 'auto',}} value={account.firstName}  label="First Name" variant="standard" onChange={onChangeHandleAccount} />
-                <TextField name='lastName' style={{ width: '300px', marginBottom: '30px', marginLeft: 'auto', marginRight: 'auto' }}  value={account.lastName} label="Last Name" variant="standard"  onChange={onChangeHandleAccount}/>
-                <TextField name='username' style={{ width: '300px', marginBottom: '30px', marginLeft: 'auto', marginRight: 'auto' }}  value={user.username} label="Username" variant="standard" onChange={onChangeHandleUser} />
-                <TextField name='password' id="outlined-password-input" type="password" style={{ width: '300px', marginBottom: '30px', marginLeft: 'auto', marginRight: 'auto' }} value={user.password}  label="Password" variant="standard"  onChange={onChangeHandleUser}/>
-                <TextField name='email' style={{ width: '300px', marginBottom: '30px', marginLeft: 'auto', marginRight: 'auto' }}  value={account.email} label="Email" variant="standard"  onChange={onChangeHandleAccount}/>
-                <TextField name='contactNo' style={{ width: '300px', marginBottom: '30px', marginLeft: 'auto', marginRight: 'auto' }}  label="Contact No" variant="standard" value={account.contactNo}  onChange={onChangeHandleAccount}/>
-                <TextField name='role' style={{ width: '300px', marginBottom: '30px', marginLeft: 'auto', marginRight: 'auto' }}  label="Role" variant="standard" value={user.role}  onChange={onChangeHandleUser}/>
-                <Button onClick={onSubmit} style={{ width: '300px', marginBottom: '30px', marginLeft: 'auto', marginRight: 'auto' }} variant="contained" color="primary">
+                <h2 style={{ marginTop: '30px', marginLeft: 'auto', marginRight: 'auto' }}>User Registration Page </h2>
+                <TextField className='form-text-field' name='firstName' value={account.firstName} label="First Name" variant="standard" onChange={onChangeHandleAccount} />
+                <TextField className='form-text-field' name='lastName' value={account.lastName} label="Last Name" variant="standard" onChange={onChangeHandleAccount} />
+                <TextField className='form-text-field' name='username' value={user.username} label="Username" variant="standard" onChange={onChangeHandleUser} />
+                <TextField className='form-text-field' name='password' value={user.password} label="Password" variant="standard" onChange={onChangeHandleUser} />
+                <TextField className='form-text-field' name='email' value={account.email} label="Email" variant="standard" onChange={onChangeHandleAccount} />
+                <TextField className='form-text-field' name='contactNo' label="Contact No" variant="standard" value={account.contactNo} onChange={onChangeHandleAccount} />
+                <TextField className='form-text-field' name='role' label="Role" variant="standard" value={user.role} onChange={onChangeHandleUser} />
+                <Button class='submit-button' onClick={onSubmit} variant="contained" color="primary">
                     Submit
                 </Button>
             </div>

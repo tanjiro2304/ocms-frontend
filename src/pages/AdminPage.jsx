@@ -17,7 +17,7 @@ const AdminPage = () => {
   return (
     <div style={{
       backgroundColor: 'white', color: 'black', width: '1300px', height: '700px',
-      borderRadius: '20px'
+      borderRadius: '20px',margin: 'auto'
     }}>
       <h2 style={{ padding: '0px',marginTop:'30px',display: 'flex', justifyContent: 'center', alignSelf: 'center' }}>Adminstration Page</h2>
       <div style={{

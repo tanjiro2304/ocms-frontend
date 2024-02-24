@@ -12,6 +12,8 @@ import AddSubscriptionPlan from './pages/AddSubscriptionPlan'
 import RegisterPage from './pages/RegisterPage'
 import Menubar from './components/Menubar'
 import ContactUs from './pages/ContactUs'
+import UserPage from './pages/UserPage'
+import Orderpage from './pages/Orderpage'
 
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/contactus" element={<ContactUs/>}></Route>
+          <Route path="/userpage" element={<UserPage/>}></Route>
+          <Route path="/userpage/orderitem" element={<Orderpage/>}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/admin" element={<AdminPage />}></Route>
           <Route path="/admin/addMenuItem" element={<AddMenuItemPage />}></Route>
